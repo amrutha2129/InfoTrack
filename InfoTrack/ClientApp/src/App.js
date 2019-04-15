@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { Route } from 'react-router';
 import Home from './components/Home';
 
 
@@ -11,9 +10,3 @@ export default class App extends React.Component {
             );
     }
 }
-  
-
-//<Route exact path='/' component={Home} />
-
-    ////<Route path='/counter' component={Counter} />
-    ////<Route path='/fetchdata/:startDateIndex?' component={FetchData} />

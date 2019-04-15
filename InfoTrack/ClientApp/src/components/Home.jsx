@@ -2,6 +2,7 @@
 import { fetchScrapeResults } from '../data/actions/SearchActions.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './Home.css';
 
 
 class Home extends Component {
@@ -41,32 +42,43 @@ class Home extends Component {
 
     render() {
         const displayScrapeResults = this.props.scrapeResults.map(ranking => (
-            <p>{ranking}</p>
+            <h5 >{ranking},</h5>
         )
         );
         return (
             <React.Fragment>
-                <div class="jumbotron jumbotron-fluid">
+                <div class="jumbotron header">
                     <div class="container">
-                        <h1 class="display-4">Rankings</h1>
+                        <h1 class="display-4">Rank Checker</h1>
                     </div>
                 </div>
                 <div class="info-container">
-                   <form>
-                    <input class="form-control form-control-lg" type="text" placeholder="Search topics or keywords" onChange={this.onChangeWord} value={this.state.searchWord}/>
-                           
-                    <input class="form-control form-control-lg" type="text" placeholder="Find ranking of URL..." onChange={this.onChangeUrl} value={this.state.searchUrl}/>
+                    <form>
+                        <div class="info-textbox">
+                            <input class="form-control form-control-lg " type="text" placeholder="Search topics or keywords" onChange={this.onChangeWord} value={this.state.searchWord} />
+                        </div>
+                        <div class="info-textbox">
+                        <input class="form-control form-control-lg" type="text" placeholder="Find ranking of URL..." onChange={this.onChangeUrl} value={this.state.searchUrl}/>
+                        </div>
+                        <div class="info-textbox">
+                            <button class="info-btn btn btn-rounded btn-outline-primary info-btn" onClick={this.buttonClick}> Go </button>
+                      </div>  
+                    </form>
 
-                   
-                    <button class="btn btn-primary" onClick={this.buttonClick}> Go </button>
-                        
-                </form>
+
+                    <div class="card">
+                        <div class="card-header">
+                           <h4>The ranking of your website is : </h4>
+                         </div>
+                        <div class="card-body">
+                            {displayScrapeResults}
+                           
+                        </div>
+                    </div>
+                     
                 </div>
                            
-
-                    <div>
-                       {displayScrapeResults}
-                    </div>      
+                               
                
                 </React.Fragment>
         );

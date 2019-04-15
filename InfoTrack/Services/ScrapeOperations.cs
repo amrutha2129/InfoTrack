@@ -10,14 +10,13 @@ namespace InfoTrack.Services
     {
         public UrlRank parseResultPage(string resultPage, string searchUrl)
         {
-            Dictionary<string, int> urlRankMap = new Dictionary<string, int>();
+            Dictionary<int, string> urlRankMap = new Dictionary<int, string>();
             int i = 0, k;
-            string startOfResults = findStartOfResults(resultPage);
-            string[] resultSections = startOfResults.Split("<div class=\"g\">");
+            var startOfResults = findStartOfResults(resultPage);
+            var resultSections = startOfResults.Split("<div class=\"g\">");
             for (k = 1; k < resultSections.Length; k++)
             {
-                urlRankMap.Add(getUrlFromSections(resultSections[k]), ++i);
-
+                urlRankMap.Add(i++, getUrlFromSections(resultSections[k]));
             }
             return getRankList(urlRankMap, searchUrl);
         }
@@ -29,33 +28,32 @@ namespace InfoTrack.Services
 
         private string getUrlFromSections(string section)
         {
-            int startOfUrl = section.IndexOf("https://");
-            int endOfUrl = 0;
-            for (int i = startOfUrl + 8; i < section.Length; i++)
+            int startOfUrl = section.IndexOf("http");
+            if (section[startOfUrl + 4] == 's')
             {
-                if (section[i].Equals('/'))
-                {
-                    endOfUrl = i;
-                    break;
-                }
+                return section.Substring(startOfUrl, (section.IndexOf("/", startOfUrl + 8)) - startOfUrl);
             }
-            return section.Substring(startOfUrl, endOfUrl - 1);
+            else
+            {
+                return section.Substring(startOfUrl, (section.IndexOf("/", startOfUrl + 7)) - startOfUrl);
+            }
+
         }
 
-        private UrlRank getRankList(Dictionary<string, int> urlRankMap, string searchUrl)
+        private UrlRank getRankList(Dictionary<int, string> urlRankMap, string searchUrl)
         {
             UrlRank urlRank = new UrlRank();
-            foreach (KeyValuePair<string, int> item in urlRankMap)
+            foreach (KeyValuePair<int, string> item in urlRankMap)
             {
-                if (item.Key.Equals(searchUrl))
+                if (item.Value.Equals(searchUrl))
                 {
-                    urlRank.RankList.Add(item.Value);
+                    urlRank.RankList.Add(item.Key);
                 }
 
             }
             return urlRank;
         }
 
-        
+
     }
 }

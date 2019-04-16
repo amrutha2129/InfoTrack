@@ -1,3 +1,4 @@
+using InfoTrack.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,6 +22,7 @@ namespace InfoTrack
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.Add(new ServiceDescriptor(typeof(IScrapeOperations), typeof(ScrapeOperations), ServiceLifetime.Transient));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

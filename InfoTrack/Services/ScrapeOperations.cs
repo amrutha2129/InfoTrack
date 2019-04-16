@@ -2,14 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace InfoTrack.Services
 {
     public class ScrapeOperations : IScrapeOperations
     {
-        public UrlRank parseResultPage(string resultPage, string searchUrl)
+       
+        public async Task<UrlRank> parseResultPageAsync(string searchWord, string searchUrl)
         {
+
+            String formattedSearchWord = searchWord.Replace(' ', '+');
+            string url = "https://www.google.com.au/search?q=" + formattedSearchWord + "&num=100";
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            var resultPage = await response.Content.ReadAsStringAsync();
+
             Dictionary<int, string> urlRankMap = new Dictionary<int, string>();
             int i = 0, k;
             var startOfResults = findStartOfResults(resultPage);
@@ -20,11 +30,14 @@ namespace InfoTrack.Services
             }
             return getRankList(urlRankMap, searchUrl);
         }
+
+
         private string findStartOfResults(string resultPage)
         {
             string[] authorsList = resultPage.Split("ires");
             return authorsList[1];
         }
+
 
         private string getUrlFromSections(string section)
         {
@@ -40,6 +53,7 @@ namespace InfoTrack.Services
 
         }
 
+
         private UrlRank getRankList(Dictionary<int, string> urlRankMap, string searchUrl)
         {
             UrlRank urlRank = new UrlRank();
@@ -54,6 +68,6 @@ namespace InfoTrack.Services
             return urlRank;
         }
 
-
+       
     }
 }

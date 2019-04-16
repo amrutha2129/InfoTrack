@@ -8,6 +8,6 @@ namespace InfoTrack.Services
 {
     public interface IScrapeOperations
     {
-        UrlRank parseResultPage(string result, string searchUrl);
+        Task<UrlRank> parseResultPageAsync(string searchWord, string searchUrl);
     }
 }

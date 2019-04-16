@@ -3,6 +3,8 @@ import { fetchScrapeResults } from '../data/actions/SearchActions.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Home.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 
 
 class Home extends Component {
@@ -42,45 +44,85 @@ class Home extends Component {
 
     render() {
         const displayScrapeResults = this.props.scrapeResults.map(ranking => (
-            <h5 >{ranking},</h5>
+
+            <h2 >{ranking}</h2>
         )
         );
         return (
+
             <React.Fragment>
-                <div class="jumbotron header">
-                    <div class="container">
-                        <h1 class="display-4">Rank Checker</h1>
-                    </div>
+                <div class="header">
+                    <div class="header-text">
+                        SERP Ranker
+                        </div>
                 </div>
+
                 <div class="info-container">
-                    <form>
-                        <div class="info-textbox">
-                            <input class="form-control form-control-lg " type="text" placeholder="Search topics or keywords" onChange={this.onChangeWord} value={this.state.searchWord} />
-                        </div>
-                        <div class="info-textbox">
-                        <input class="form-control form-control-lg" type="text" placeholder="Find ranking of URL..." onChange={this.onChangeUrl} value={this.state.searchUrl}/>
-                        </div>
-                        <div class="info-textbox">
-                            <button class="info-btn btn btn-rounded btn-outline-primary info-btn" onClick={this.buttonClick}> Go </button>
-                      </div>  
-                    </form>
 
 
-                    <div class="card">
-                        <div class="card-header">
-                           <h4>The ranking of your website is : </h4>
-                         </div>
-                        <div class="card-body">
-                            {displayScrapeResults}
-                           
+                    <div class="row p-100 justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8 p-100">
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+
+                                    <div class="col info-textbox">
+                                        <label class="result-head"><h3>Search keywords</h3></label>
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords" type="text"
+
+                                            onChange={this.onChangeWord}
+                                            value={this.state.searchWord} />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row p-100 justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8 p-100">
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+
+                                    <div class="col info-textbox">
+                                        <label class="result-head"><h3>Website URL</h3></label>
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" type="text"
+                                            placeholder="Find ranking of URL..."
+                                            onChange={this.onChangeUrl}
+                                            value={this.state.searchUrl} />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="row p-100">
+                        <div class="col-sm-6 btn-section">
+                            <button class="info-btn btn btn-rounded btn-outline-primary" onClick={this.buttonClick}> Go </button>
                         </div>
                     </div>
-                     
-                </div>
-                           
-                               
-               
-                </React.Fragment>
+                   
+                        <label class="result-head"><h3>SERP rank</h3></label>
+                        
+                        <div class="row p-100">
+                            <div class="col-sm-8 result-section">
+                                {displayScrapeResults}
+                            </div>
+                        </div>
+                       
+                    
+                    </div>
+                
+            </React.Fragment>
+
+            
         );
     }
 }

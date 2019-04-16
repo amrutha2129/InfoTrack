@@ -1,30 +1,57 @@
 ﻿.info-container {
-    /*margin-left: 50px;
-    margin-right: 50px;*/
+    
     padding-left: 100px;
     padding-right: 100px;
-    padding-top: 60px;
     height: 500px;
-    background-color: whitesmoke;
-   margin-top:-30px
+    background-color:white;
+    margin-top: -30px
 }
 
-.info-textbox{
-    padding-bottom:50px;
-   justify-content:center
+.info-textbox {
+    padding-bottom: 20px;
+    justify-content: center;
+    font-family: Verdana
 }
 
-.header{
+.btn-section{
+    padding-top:20px
+}
+
+.header {
+
+    background: url(/static/media/Ranking.1d937224.png);
+    height: 200px;
+    width: 100%;
+    padding-left: 250px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-color: lightblue;
+}
+
+.header-text{
+    padding-top: 40px;
+    font-size: 60px;
+    font-family: Verdana
+}
+
+.info-btn {
+    border-radius: 60px;
     background-color: dimgray;
     color: white;
-    text-align:center;
-    
+    padding-left: 40px;
+    padding-right: 40px;
+    font-family: Verdana
 }
 
-.info-btn{
-    border-radius: 60px;
-    background-color:dimgray;
-    color:white;
-    padding-left:40px;
-    padding-right: 40px
+.result-section {
+    
+    background-color: white;
+    border: 1px solid lightgray;
+    margin-top: 10px;
+    font-family: Verdana
+}
+
+.result-head {
+    padding-top: 20px;
+    font-family: Verdana
 }

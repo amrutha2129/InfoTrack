@@ -1,8 +1,10 @@
-﻿using InfoTrack.Services;
+﻿using InfoTrack.Models;
+using InfoTrack.Services;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace InfoTrack.Tests
 {
@@ -17,10 +19,11 @@ namespace InfoTrack.Tests
         }
 
         [Test]
-        public void checkInfoTracklRanking()
+        public void checkInfoTrackRanking()
         {
-            var result = _scrapeOperations.parseResultPageAsync("online title search", "https://www.infotrack.com.au");
-            //Assert.AreEqual(result, {rankList=[0]});
+            var result = _scrapeOperations.parseResultPageAsync("online title search", "https://www.infotrack.com.au").Result;
+            Assert.AreEqual(result.RankList.Count, 1);
+            Assert.AreEqual(result.RankList[0], 0);
         }
-   }
+    }
 }

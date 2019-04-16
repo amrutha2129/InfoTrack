@@ -6,11 +6,9 @@ export function fetchScrapeResults(searchWord, searchUrl) {
         try {
             
             const url = `api/TitleSearch/fetchTitleSearchResults?searchWord=${searchWord}&searchUrl=${searchUrl}`;
-            const response = await fetch(url);
-            console.log(response);
+            const response = await fetch(url);    
             const result = await response.json();
-            console.log(result+"from actions");
-           
+            
             dispatch({
                 type: FETCH_SCRAPE_RESULTS,
                 payload: result

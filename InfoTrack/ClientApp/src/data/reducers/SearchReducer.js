@@ -10,7 +10,7 @@ export default function(state = initialState, action){
     switch (action.type) {
 
         case FETCH_SCRAPE_RESULTS:
-            console.log(action.payload.rankList);
+            
             return {
                 ...state,
                 scrapeResults: action.payload.rankList

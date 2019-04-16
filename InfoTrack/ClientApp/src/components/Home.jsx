@@ -36,10 +36,6 @@ class Home extends Component {
         this.props.handleClick(this.state.searchWord, this.state.searchUrl);
     };
 
-    showResults() {
-        console.log(this.props.scrapeResults);
-    }
-
     
 
     render() {

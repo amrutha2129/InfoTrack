@@ -66,10 +66,11 @@ class Home extends Component {
 
                                     <div class="col info-textbox">
                                         <label class="result-head"><h3>Search keywords</h3></label>
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords" type="text"
-
+                                        <input class="form-control form-control-lg form-control-borderless" 
+                                            placeholder="Search topics or keywords"
+                                            type="text"
                                             onChange={this.onChangeWord}
-                                            value={this.state.searchWord} />
+                                            value={this.state.searchWord} required />
                                     </div>
                                 </div>
                             </form>
@@ -88,10 +89,10 @@ class Home extends Component {
 
                                     <div class="col info-textbox">
                                         <label class="result-head"><h3>Website URL</h3></label>
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" type="text"
+                                        <input class="form-control form-control-lg form-control-borderless" type="text"
                                             placeholder="Find ranking of URL..."
                                             onChange={this.onChangeUrl}
-                                            value={this.state.searchUrl} />
+                                            value={this.state.searchUrl} required/>
                                     </div>
                                 </div>
                             </form>
